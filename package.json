@@ -1,0 +1,80 @@
+{
+  "name": "turtlecoin-utils",
+  "version": "3.0.10",
+  "description": "A Typescript/CommonJS collection of utilities useful for TurtleCoin developers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*",
+    "config.json"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "docs": "./node_modules/.bin/typedoc && touch docs/.nojekyll && git restore docs/CNAME",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run docs",
+    "style": "./node_modules/.bin/eslint src/**/*.ts src/*.ts test/*.ts",
+    "fix-style": "./node_modules/.bin/eslint --fix src/**/*.ts src/*.ts test/*.ts",
+    "test": "npm run style && npm run build && npm run test-node && npm run test-js",
+    "test-node": "./node_modules/.bin/mocha --exit --timeout 30000 --require ts-node/register test/test.ts",
+    "test-js": "env FORCE_JS=1 ./node_modules/.bin/mocha --exit --timeout 30000 --require ts-node/register test/test.ts"
+  },
+  "keywords": [
+    "TurtleCoin",
+    "Utilities"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turtlecoin/turtlecoin-utils.git"
+  },
+  "homepage": "https://utils.turtlecoin.dev",
+  "bugs": {
+    "url": "https://github.com/turtlecoin/turtlecoin-utils/issues"
+  },
+  "author": "Brandon Lehmann <brandonlehmann@gmail.com>",
+  "contributors": [
+    "zpalmtree <22151537+zpalmtree@users.noreply.github.com>"
+  ],
+  "license": "GPL-3.0",
+  "optionalDependencies": {
+    "@ledgerhq/hw-transport-node-hid": "^5.22.0"
+  },
+  "dependencies": {
+    "@ledgerhq/hw-transport": "^5.43.0",
+    "@turtlecoin/base58": "0.0.14",
+    "@turtlecoin/bytestream": "0.0.16",
+    "@turtlecoin/mnemonics": "0.0.12",
+    "@types/aes-js": "^3.1.1",
+    "@types/ledgerhq__hw-transport": "^4.21.3",
+    "@types/ledgerhq__hw-transport-node-hid": "^4.22.2",
+    "@types/node-fetch": "^2.5.8",
+    "@types/numeral": "^2.0.0",
+    "@types/semver": "^7.3.4",
+    "abort-controller": "^3.0.0",
+    "aes-js": "^3.1.2",
+    "big-integer": "^1.6.48",
+    "get-random-values": "^1.2.2",
+    "node-fetch": "^2.6.1",
+    "numeral": "^2.0.6",
+    "semver": "^7.3.4",
+    "turtlecoin-crypto": "git+http://github.com/NolaniumProject/nolanium-crypto"
+  },
+  "devDependencies": {
+    "@types/mocha": "^8.2.1",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "mocha": "^8.3.0",
+    "ts-node": "^9.1.1",
+    "typedoc": "^0.20.27",
+    "typescript": "^4.1.5"
+  }
+}
